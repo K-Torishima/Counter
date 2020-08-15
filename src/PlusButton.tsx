@@ -1,19 +1,5 @@
 import React from 'react';
-import {Text, TouchableOpacity, StyleSheet} from 'react-native';
-
-const styles = StyleSheet.create({
-  button: {
-    backgroundColor: '#008080',
-    width: 50,
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 20,
-  },
-});
+import Button from './components/Button';
 
 interface Props {
   count: number;
@@ -25,9 +11,5 @@ export default function ReduceButton(props: Props) {
   const addCounter = React.useCallback(() => {
     setCounter(count + 1);
   }, [count, setCounter]);
-  return (
-    <TouchableOpacity style={styles.button} onPress={addCounter}>
-      <Text style={styles.buttonText}>+</Text>
-    </TouchableOpacity>
-  );
+  return <Button label="+" onPress={addCounter} />;
 }
