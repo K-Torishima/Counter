@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
 });
 
 export default function Counter() {
+  // ここで初期値を入れないとアンデファインドになる
   const [count, setCounter] = React.useState(0);
 
   const addCounter = React.useCallback(() => {
