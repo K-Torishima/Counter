@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
+import CounterText from './CounterText'; // カウントするTextを分離し、ここにimport
 
 const styles = StyleSheet.create({
   container: {
@@ -8,6 +9,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
+
   button: {
     backgroundColor: '#008080',
     width: 50,
@@ -15,20 +17,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+
   buttonText: {
     color: 'white',
     fontSize: 20,
   },
+
   disabledButton: {
     backgroundColor: 'gray',
-  },
-  textContainer: {
-    width: 100,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: 20,
   },
 });
 
@@ -48,12 +44,9 @@ export default function Counter() {
       <TouchableOpacity style={styles.button} onPress={addCounter}>
         <Text style={styles.buttonText}>+</Text>
       </TouchableOpacity>
-      <View style={styles.textContainer}>
-        {count >= 10 && <Text>you're great!</Text>}
-        <Text style={styles.text}>{count}</Text>
-      </View>
+      <CounterText count={count} />
       <TouchableOpacity
-        style={[styles.button, count <= 10 && styles.disabledButton]}
+        style={[styles.button, count <= 0 && styles.disabledButton]}
         onPress={reduceCounter}
         disabled={count <= 0}>
         <Text style={styles.buttonText}>-</Text>
@@ -61,3 +54,6 @@ export default function Counter() {
     </View>
   );
 }
+// カウントが１０以降ならコメントが出る
+// 0以下はdisabledなのでマイナスボタンが押せなくなる
+// カウントが0以上ならマイナスボタンが押せる
